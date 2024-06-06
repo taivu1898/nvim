@@ -7,39 +7,39 @@
 |-- README.md
 |-- init.lua
 |-- lazy-lock.json
-`-- lua
+|-- lua
     |-- core
     |   |-- bootstrap.lua
     |   |-- default_config.lua
     |   |-- init.lua
     |   |-- mappings.lua
-    |   `-- utils.lua
+    |   |-- utils.lua
     |-- custom
     |   |-- chadrc.lua
     |   |-- configs
     |   |   |-- cpp
     |   |   |   |-- lspconfig.lua
-    |   |   |   `-- null-ls.lua
+    |   |   |   |-- null-ls.lua
     |   |   |-- go
     |   |   |   |-- lspconfig.lua
-    |   |   |   `-- null-ls.lua
+    |   |   |   |-- null-ls.lua
     |   |   |-- js
     |   |   |   |-- dap.lua
     |   |   |   |-- formatter.lua
     |   |   |   |-- lint.lua
     |   |   |   |-- lspconfig.lua
-    |   |   |   `-- null-ls.lua
+    |   |   |   |-- null-ls.lua
     |   |   |-- python
     |   |   |   |-- lspconfig.lua
-    |   |   |   `-- null-ls.lua
-    |   |   `-- rust
+    |   |   |   |-- null-ls.lua
+    |   |   |-- rust
     |   |       |-- lspconfig.lua
     |   |       |-- rust-tools.lua
-    |   |       `-- rustaceanvim.lua
+    |   |       |-- rustaceanvim.lua
     |   |-- init.lua
     |   |-- mappings.lua
-    |   `-- plugins.lua
-    `-- plugins
+    |   |-- plugins.lua
+    |-- plugins
         |-- configs
         |   |-- cmp.lua
         |   |-- lazy_nvim.lua
@@ -48,6 +48,6 @@
         |   |-- nvimtree.lua
         |   |-- others.lua
         |   |-- telescope.lua
-        |   `-- treesitter.lua
-        `-- init.lua
+        |   |-- treesitter.lua
+        |-- init.lua
 ```
