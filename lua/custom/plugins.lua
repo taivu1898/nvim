@@ -1,3 +1,5 @@
+local cmp = require "cmp"
+
 local plugins = {
   {
     "williamboman/mason.nvim",
@@ -18,20 +20,27 @@ local plugins = {
         -- js
         "eslint-lsp",
         "js-debug-adapter",
-        "prettier",
+        "prettierd",
         "typescript-language-server",
 
-        -- fontend
-        "html-lsp",
-        "css-lsp",
+        -- nextjs
+        "tailwindcss-language-server",
 
-        -- markdown
-        "markdownlint",
-        "mdformat",
+        -- rust
+        "rust-analyzer",
 
+        -- go
+        "gopls",
+        "gofumpt",
+        "golines",
+
+        -- lua
+        "lua-language-server",
       },
     },
   },
+
+  -- dap
   {
     "rcarriga/nvim-dap-ui",
     dependencies = "mfussenegger/nvim-dap",
@@ -50,6 +59,83 @@ local plugins = {
       end
     end
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      local opts = require "plugins.configs.treesitter"
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+      }
+      return opts
+    end,
+  },
+  {
+    "vim-crystal/vim-crystal",
+    ft = "crystal",
+    config = function(_)
+      vim.g.crystal_auto_format = 1
+    end
+  },
+
+  -- rust
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4",
+    ft = { "rust" },
+    dependencies = "neovim/nvim-lspconfig",
+    config = function()
+      require "custom.configs.rust.rustaceanvim"
+    end
+  },
+  {
+    "mfussenegger/nvim-dap",
+    init = function()
+      require("core.utils").load_mappings("dap")
+    end
+  },
+  {
+    'saecki/crates.nvim',
+    ft = { "toml" },
+    config = function(_, opts)
+      local crates = require('crates')
+      crates.setup(opts)
+      require('cmp').setup.buffer({
+        sources = { { name = "crates" } }
+      })
+      crates.show()
+      require("core.utils").load_mappings("crates")
+    end,
+  },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    lazy = false,
+    config = function(_, opts)
+      require("nvim-dap-virtual-text").setup()
+    end
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local M = require "plugins.configs.cmp"
+      M.completion.completeopt = "menu,menuone,noselect"
+      M.mapping["<CR>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = false,
+      }
+      table.insert(M.sources, { name = "crates" })
+      return M
+    end,
+  },
 
   -- python, cpp, js
   {
@@ -59,6 +145,29 @@ local plugins = {
       require("core.utils").load_mappings("dap")
     end
   },
+
+  -- go
+  {
+    "dreamsofcode-io/nvim-dap-go",
+    ft = "go",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function(_, opts)
+      require("dap-go").setup(opts)
+      require("core.utils").load_mappings("dap_go")
+    end
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("core.utils").load_mappings("gopher")
+    end,
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
+    end,
+  },
+
   -- tmux
   {
     "christoomey/vim-tmux-navigator",
@@ -89,12 +198,28 @@ local plugins = {
     end,
   },
   {
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.js.null-ls"
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.python.lspconfig"
       require "custom.configs.cpp.lspconfig"
       require "custom.configs.js.lspconfig"
+      require "custom.configs.rust.lspconfig"
+      require "custom.configs.go.lspconfig"
     end,
   },
   {
@@ -103,6 +228,13 @@ local plugins = {
     config = function()
       require "custom.configs.js.lint"
     end
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = "go",
+    opts = function()
+      return require "custom.configs.go.null-ls"
+    end,
   },
   {
     {
@@ -116,21 +248,21 @@ local plugins = {
         handlers = {}
       },
     },
-    {
-      "mhartington/formatter.nvim",
-      event = "VeryLazy",
-      opts = function()
-        return require "custom.configs.js.formatter"
-      end
-    },
+  },
+  {
+    "mhartington/formatter.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.js.formatter"
+    end
+  },
 
-    {
-      "jose-elias-alvarez/null-ls.nvim",
-      event = "VeryLazy",
-      opts = function()
-        return require "custom.configs.cpp.null-ls"
-      end,
-    },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.cpp.null-ls"
+    end,
   },
 }
 
