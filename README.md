@@ -1,5 +1,7 @@
 # My NvChad config
 
+Cài đặt python, gcc, nodejs trước khi sử dụng
+
 **For C/C++ Python Go Rust JS**
 ```bash
 .
