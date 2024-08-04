@@ -94,7 +94,7 @@ return {
         cmd = { "Template", "TemProject" },
         config = function()
             require("template").setup({
-                temp_dir = "~/.config/nvim/lua/configs/templates",
+                temp_dir = "~/.config/nvim/lua/templates",
                 author_name = "Vũ Viết Tài",
             })
         end,
