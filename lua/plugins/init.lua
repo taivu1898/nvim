@@ -1,11 +1,18 @@
 return {
 
     {
-        "xeluxee/competitest.nvim",
-        dependencies = "MunifTanjim/nui.nvim",
-        config = function()
-            require("competitest").setup()
-        end,
+        "kdheepak/lazygit.nvim",
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile",
+        },
+        -- optional for floating window border decoration
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
     },
 
     {
@@ -14,9 +21,6 @@ return {
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
-            opts = {
-                timeout = 10000,
-            },
             "hrsh7th/cmp-cmdline",
         },
         config = function()
@@ -60,15 +64,6 @@ return {
     {
         "christoomey/vim-tmux-navigator",
         event = "VeryLazy",
-    },
-
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "BufWinEnter",
-        config = function()
-            require("ui.lualine")
-        end,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
     {

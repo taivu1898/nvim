@@ -48,4 +48,7 @@ noice.setup({
             },
         },
     },
+    notify = {
+        timeout = 3000,
+    },
 })
