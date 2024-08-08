@@ -11,6 +11,21 @@ M.ui = {
     -- 	Comment = { italic = true },
     -- 	["@comment"] = { italic = true },
     -- },
-}
+    statusline = {
+        theme = "minimal",
+        separator_style = "round",
+    },
 
+    nvdash = {
+        load_on_startup = true,
+    },
+}
+M.term = {
+    float = {
+        row = 0.05, -- Hơi giảm vị trí hàng từ trên xuống
+        col = 0.1, -- Hơi giảm vị trí cột từ trái qua
+        width = 0.8, -- Tăng chiều rộng lên 80%
+        height = 0.8, -- Tăng chiều cao lên 60%
+    },
+}
 return M
