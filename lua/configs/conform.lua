@@ -1,9 +1,10 @@
 local options = {
     formatters_by_ft = {
-        lua = { "stylua" },
         c_cpp = { "clang-format" }, -- Hack to force download.
         c = { "clang_format" },
         cpp = { "clang_format" },
+        lua = { "stylua" },
+        markdown = { "prettier" },
     },
 
     formatters = {
@@ -18,6 +19,9 @@ local options = {
                 PackConstructorInitializers: Never}",
             },
         },
+        prettier = {
+            prepend_args = { "--print-width", "80" },
+        },
     },
 
     format_on_save = {
@@ -27,4 +31,4 @@ local options = {
     },
 }
 
-require("conform").setup(options)
+return options
