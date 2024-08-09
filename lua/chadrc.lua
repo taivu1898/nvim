@@ -15,7 +15,6 @@ M.ui = {
         icons = true,
         lspkind_text = true,
         style = "atom",
-        selected_item_bg = "colored",
     },
 
     statusline = {

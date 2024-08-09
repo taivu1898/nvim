@@ -7,14 +7,21 @@ Follow NvChad on https://nvchad.com
 Follow ProgrammingRainbow at https://www.youtube.com/@ProgrammingRainbow
 
 ## Before install neovim
-* Run the command below to install necessary dependencies
+
+- Run the command below to install necessary dependencies
 
 ```bash
 sudo apt install python3 python3-venv python3-pip nodejs git gcc make libncurses-dev curl wget build-essential clang openssh-client openssh-server unzip xclip luarocks
 ```
 
-* Install nodejs at https://nodejs.org/en
-* Install favorite font at https://www.nerdfonts.com/
+- Install nodejs at https://nodejs.org/en
+- Install favorite font at https://www.nerdfonts.com/
+
+# If you are Arch Linux user
+
+```bash
+sudo pacman -S python python-pip nodejs git gcc make ncurses curl wget base-devel clang openssh unzip xclip luarocks neovim
+```
 
 ## Install neovim
 
